@@ -1,0 +1,555 @@
+HTML DOM
+什么是DOM？
+1.文档对象模型
+（1）核心DOM 针对任何结构化文档的模型
+（2）XML DOM 针对XML文档的标准模型
+（3）HTML DOM 针对HTML文档的标准模型
+HTML的标准对象模型 HTML的标准编程接口 W3C标准
+
+
+DOM 节点
+根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：
+整个文档是一个文档节点
+每个 HTML 元素是元素节点
+HTML 元素内的文本是文本节点
+每个 HTML 属性是属性节点
+注释是注释节点
+
+DOM树 
+	子节点1-节点-子节点2
+可通过 JavaScript （以及其他编程语言）对 HTML DOM 进行访问。
+所有 HTML 元素被定义为对象，而编程接口则是对象方法和对象属性。
+方法是您能够执行的动作（比如添加或修改元素）。
+属性是您能够获取或设置的值（比如节点的名称或内容）。
+
+DOM对象方法
+getElementById()	返回带有指定 ID 的元素。
+getElementsByTagName()	返回包含带有指定标签名称的所有元素的节点列表（集合/节点数组）。
+getElementsByClassName()	返回包含带有指定类名的所有元素的节点列表。
+appendChild()	把新的子节点添加到指定节点。
+removeChild()	删除子节点。
+replaceChild()	替换子节点。
+insertBefore()	在指定的子节点前面插入新的子节点。
+createAttribute()	创建属性节点。
+createElement()	创建元素节点。
+createTextNode()	创建文本节点。
+getAttribute()	返回指定的属性值。
+setAttribute()	把指定属性设置或修改为指定的值。
+
+节点的属性
+innerHTML属性：元素的内容
+
+nodeName 属性规定节点的名称。
+nodeName 是只读的
+元素节点的 nodeName 与标签名相同
+属性节点的 nodeName 与属性名相同
+文本节点的 nodeName 始终是 #text
+文档节点的 nodeName 始终是 #document
+
+nodeValue 属性规定节点的值。
+元素节点的 nodeValue 是 undefined 或 null
+文本节点的 nodeValue 是文本本身
+属性节点的 nodeValue 是属性值
+
+nodeType 属性
+nodeType 属性返回节点的类型。nodeType 是只读的。
+比较重要的节点类型有：
+元素类型	NodeType
+元素	1
+属性	2
+文本	3
+注释	8
+文档	9
+
+访问HTML元素等同于访问节点	//查找
+1.getElementById()
+2.getElementsByTagName()
+3.getElementsByClassName()
+
+如需向 HTML DOM 添加新元素，您首先必须创建该元素（元素节点），然后把它追加到已有的元素上。
+document.createElement（）创建元素节点  document.createTextNode() 创建文本节点  		//创建 
+a.appendchild(b) 向a元素追加b节点  新元素作为最后一个子元素增加    //添加
+a.removechild(b) 删除a元素的子元素b   b.parentNode.removeChild(b)删除b元素		//删除
+a.replacechild(b,c)以b元素替换a元素的子元素c			//替换
+a.insertBefore（b,c）b元素插入a元素的子元素c之后         //插入
+
+事件的触发类型 
+1.捕获 从最上级标签document到最下级标签依次触发
+2.冒泡 从最下级标签到最上级标签document依次触发
+IE浏览器只有冒泡模型
+W3C模型有捕获和冒泡模型
+element.addeventlistener（‘load’，function（）{...}，ture）；
+ture代表捕获，false代表事件冒泡
+
+• 在W3c中，使用stopPropagation（）方法
+• 在IE下设置cancelBubble = true；
+在捕获的过程中stopPropagation（）；后，后面的冒泡过程也不会发生了~
+3.阻止事件的默认行为，例如click <a>后的跳转~
+• 在W3c中，使用preventDefault（）方法；
+• 在IE下设置window.event.returnValue = false;
+
+xmlHttpRequest对象
+AJAX核心对象，get方式
+1.判断是否存在xmlHttpRequest创建XMLHttpRequest对象
+2.obj.onreadystatechange=stateChange; 设置触发器
+3.obj.open（'get',url,true）;  //true设置为异步  防止缓存在url后加入参数   get 只读从服务器端获取 表单信息在地址栏呈现  post向服务器提交数据的一种请求 安全性稍高
+4.obj.send(null);
+5.function(){if obj.readystate==4  {if obj.readystate==200{obj.responseText }}}   //回调函数 4表示与服务器交互完成 200表示服务器正在返回客户端信息  
+
+doctype声明浏览器解析器文档类型
+严格模式浏览器以支持的最高标准运行排版和JS
+混杂模式浏览器以向后兼容的方式运行
+模式的触发，doctype标签声明触发的类型是严格模式还是混杂模式
+
+
+盒子模型
+margin border padding content
+width=content.width  //w3c盒子模型
+width=content.width+border.left+border.right +padding.left+padding.right   // ie盒子模型
+
+块级元素：block element，每个块级元素默认占一行高度，一行内添加一个块级元素后无法一般无法添加其他元素（float浮动后除外）。两个块级元素连续编辑时，会在页面自动换行显示。块级元素一般可嵌套块级元素或行内元素；
+
+行内元素：inline element，也叫内联元素、内嵌元素等；行内元素一般都是基于语义级(semantic)的基本元素，只能容纳文本或其他内联元素，常见内联元素 “a”。
+
+浮动元素引起的问题
+1.父级元素高度无法被撑开，影响与父级元素同级的元素
+2.与浮动元素同级的非浮动元素不会跟随其后
+3.若非第一个元素浮动，则浮动元素之前的元素也需要浮动
+
+解决办法 BFC
+
+XHTML和HTML  XHTML更为严格  标签必须正确的被嵌套 标签必须被关闭 标签名必须小写 标签必须有根元素
+
+HTML5新特性
+1.增加绘画canvas和媒体video和audio 不需要借助其他插件
+2.本地离线存储localstorage 长期存储数据，浏览器关闭后不会丢失 sessionstorage数据关闭后自动清楚
+3.元素语义化  什么样的标签就要做什么样的事情
+4.新技术 
+（1）webworker 
+js是单线程的，webworker为js引入多线程但是支线完全受主线程控制，且不得影响主线
+（2）websocket
+传统http协议 客户端发送请求 服务器传回回复  websocket 浏览器通过js与服务器端发出建立websocket请求 建立后可以通过TCP传输数据  数据传输量小
+（3）geolocation
+获取地理位置  精度不高
+
+<table>
+<caption>标题</caption>
+<thead>
+<tr>行<th>表头单元格</th></tr>
+</thead>
+<tbody>
+	<tr> <th>表头单元格</th> <td>普通单元格</td> </tr>
+</tbody>
+<tfoot>
+	<tr><td colspan="n" ></td></tr> colspan属性设置单元格跨列     rowspan属性设置跨行
+</tfoot>
+
+<form action="url" method="post">
+	<fieldset>
+	<legend>标题</legend>
+	<input type="" name="">    //checkbox  checked(表示选中) disable（不可选） 复选框 radio单选框 file 文件选择 text 文本框(单行) email(邮箱格式检验) range（范围选择条）  color(试色器)   date picker（日期选择器 date mouth week time datetime datetime-local）  name属性表示提交给后台的属性名称
+	 </fieldset>
+
+	<fieldset>
+	<label for="abc"> 提示信息</label>   //for属性和需要描述的标签id一致
+	<select  id="abc">   //下拉框
+		<optgroup label="group1">  下拉选择框分组
+			<option  value="">选项一</option>
+			<option>选项二</option>
+		</optgroup>
+		<option>选项三</option>
+	</select>
+	<textarea>多行文本框</textarea>
+	</fieldset>
+	<button type=""> </button> submit提交 reset重置
+
+	<dl>             内容快
+		<dt></dt>	 上级内容
+		<dd></dd>	 下级内容
+	</dl>
+
+
+###################################################################################
+
+CSS部分
+
+
+选择器
+ID选择器#***{} 
+类选择器.***{} 
+标签选择器**{} 
+后代选择器 a b{}    //选择a标签中所有的b类后代 
+相邻选择器 a+b{}		//选中a标签后的第一个b标签
+子选择器 a > b{}		//选择a标签中所有b类子元素
+通配符选择器  *{}
+伪类选择器 *:伪类名{}
+属性选择器*(属性名=“***”){}
+
+可以继承的样式 font-size font-family color UL LI DL DT DD   
+
+
+！important  css语句后添加  该条样式拥有最高优先级
+！important>id>class>tagname
+
+初始化CSS样式
+不同浏览器对有些标签的默认值是不一样的，导致不同浏览器出现不同的视觉效果，所以要初始化CSS样式
+
+float当 positon:absolute display:none时无效  
+overflow 计算溢出时候 会计算内容元素高度 ，触发BFC 造成父元素内容被浮动元素撑开
+
+Block元素会扩展到与父元素同宽，所以block元素会垂直排列；
+
+CSS不是一种编程语言，使用中容易出现冗余，CSS预处理器定义一种新的语言，为CSS增加编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作
+SASS LESS Stylus是其中的优秀框架。
+
+CSS3新特性
+实现了圆角radius，阴影shadow，文字特效text-shadow，线性渐变gradient，旋转transform
+
+优化网站文件和资源
+文件合并和压缩
+使用CDN托管
+使用缓存
+
+text-indent:n px;   块元素内容段落首行缩进
+text-align:left  right center justify  文本对齐方式
+word-spacing: n px;  改变字单词之间的标准间隔
+text-transform:none uppercase lowercase capitalize(首字母大写)
+text-decoration: none underline overline(上划线) line-through（删除线） blink（闪烁）
+font-family 字体种类
+font-size 字体大小 
+font-style: normal italic(文字斜体显示) oblique（文字倾斜显示）
+
+链接伪类
+a:link 普通的未被访问的
+a:visited 已访问的
+a:hover	鼠标移入的
+a:active 链接被点击的时刻
+
+a:hover 必须位于 a:link 和 a:visited 之后
+a:active 必须位于 a:hover 之后
+
+vertical-align：baseline（元素放置在父元素基线） sub（对齐文本下标） super（对齐文本上标） top（元素顶端和行中最高元素对齐） text-top（元素顶端与父元素顶端对齐） middle（元素放在父元素中部） bottom（元素底端和行中最低元素对齐） text-bottom（元素底端和父元素底端对齐） inherit(从父级继承)
+
+
+###################################################################################
+
+
+Javascript部分
+
+数据类型
+number object boolean function undefined
+
+split（）切割字符串成数组
+join（）数组组合成字符串
+pop（） 数组尾部添加
+push（）	数组尾巴删除
+shift（） 数组头部删除
+unshift（）数组头部添加
+
+一个对象只能添加一个普通事件，相同触发条件的事件会被覆盖
+绑定事件 addeventlistener（‘触发方式’，function（）{}，true） true代表捕获模型 false代表冒泡模型
+
+a.call(b,arg1,arg2,...) b对象使用a对象的方法 并将this指向b对象
+
+实现继承
+function Animal(name)
+{
+this.name=name;
+this.showName=function()
+{
+alert(this.name)
+}
+}
+function Cat(name)
+{
+Animal.call(this,name); //将Animal应用到Cat上，因此Cat拥有了Animal的所有属性和方法
+}
+var cat = new Cat(“Black Cat”);
+cat.showName(); //浏览器弹出Black Cat
+
+apply（obj，[arg1,arg2,...]） apply将参数整合成数组，功能与call一样
+
+AJAX解析 jason 
+eval（） 解析的时候不会判断字符串是否合法，Json对象中的JS方法也会被执行  性能低
+JSON.parse（）解析时候会判断是否合法 安全性高
+轻量级数据格式， 格式简单，易于读写，占用小
+
+b继承a
+b.prototype=new a（）
+或者b构造方法中使用call方法
+
+闭包
+能够让外部函数读取其他函数内部变量的函数
+
+事件委托
+为元素的父元素添加事件，事件根据冒泡模式被触发时，判断是否是该子元素触发，执行触发后的代码  event.target(标准模式)window.event.srcElement(IE)代表源事件
+优点，1性能好 2.程序扩展性提升
+
+document.onload HTML和CSS加载完毕后才执行JS代码
+
+object.hasOwnProperty(prop) 对象的prop属性是否是对象自身属性
+
+array.splice（index,howmany,[item]） 返回被删除的元素组成的数组
+array.forEach
+
+
+string.split().join()
+
+Array.prototype.slice.call(arguments)  //arguments转化成数组
+
+Object.prototype.toString.call()
+
+
+Number类型
+八进制字面量第一位必须是0，然后是八进制数序列（0-7)  如果字面值中数值超出了范围，那么前置0会被忽略，后面的数值当做十进制解析
+十六进制前两位必须是0x 后面跟1-9 A-F  其中字母可以大写也可以小写
+进行算术运算时，所有八进制和十六进制的数值最终都被转化为十进制进行运算
+
+数值范围，JS中数字有最大最小值，如果超出范围，这个数会被转换为 Infinity或者-Infinity 无法继续参加下一次运算
+NaN 用来表示一个本来应返回数值的操作数没有返回数值的情况  任何涉及NaN的操作都返回NaN NaN不等于任何值包括自己本身
+
+数值转换  Number( )
+如果是boolean值  ture转换为1 false转换为0
+如果是number值 简单的传入返回
+如果是null 则返回0
+如果是undefined 返回NaN
+如果是字符串 如果只包含数字 则转为十进制（忽略前导0）   如果包含有效浮点格式，则转化为对应浮点值 如果包含有效十六进制格式，则转化为大小相同的十进制
+空字符串返回0  如果字符串包含除上述其他内容返回NaN
+如果是对象， 则调用对象valueOf（）方法 按照上述规则转换如果返回的是NaN，则调用toString方法再按照上述转换字符串规则转换数值
+
+parseInt(字符串,数字基数（进制）) 忽略前置空格，直到找到第一个数字，返回这个数字到后序所有字符或者遇到了一个非数字字符。
+parseFloat（字符串）只能解析十进制，十六进制会被解析为0 返回一个浮点数，如果浮点数是整数则返回一个整数
+
+
+Object对象
+Constructor 保存用于创建该对象的函数
+hasOwnProperty（propertyName） 检查属性是否是当前实例定义的而不是原型中存在 。传入参数必须是字符串形式
+isPrototypeOf（object）用于检查传入的对象是否是另一个对象的原型
+toString（）
+ValueOf（）返回对象的字符串、数值、布尔值表示
+
+操作符
+位操作
+~按位非 &按位与 |按位或 ^按位异或 左移<<   >>右移用符号位填充左边空缺的位置 >>>无符号位右移  整数相同，负数由于以补码表示，无符号右移操作讲这个二进制编码当做整数进行移位操作
+
+&&与操作 
+短路操作，如果两个表达式中有一个的值不是布尔值则返回值就不一定是布尔值
+
+||或操作 
+短路操作 如果两个操作数都是null 返回null 如果两个操作数都是undefined 则返回undefined 如果两个操作数都是NaN则返回NaN  如果第一个数是false则返回第二个数
+
++操作符
+两个数都是数值则进行常规加法运算
+如果两个操作数都是字符串则讲第二个操作数与第一个拼接起来
+如果只有一个操作数是字符串，则将另一个操作数转换为字符串（toString（）   若是undefined或者null则调用String（））
+
+-操作符
+如果有一个操作数是字符串、布尔值、null和undefined 则先在后台调用Number（）函数转化为数值，再计算
+如果有一个操作数是对象，就调用valueOf（）方法取得对象数值 如果没有valueOf方法则调用toString方法并将得到的字符串转化为数值
+
+关系操作符 < > <=　＞＝
+返回布尔值
+两个操作数都是数值，则进行数值比较
+如果两个操作数都是字符串，则比较两个字符串对应编码，比较第一个字符对应编码大小。
+如果只有一个数是数值，则将另外一个数值转化为数值进行数值比较
+任何操作数与NaN 比较返回false
+
+循环结构体
+for （property in expression） {statement；}
+用来枚举对象的属性  property中每次迭代赋值为对象的属性名
+
+switch (expression){
+	case value:statement
+	break;
+
+	case value:statement
+	break;
+
+	case value:statement
+	break;
+
+	default:statement
+}
+如果不加break则会继续执行下一个case中的代码 case中的value可以是任何数据类型
+-------------------------------------
+函数
+函数会在执行完return之后停止并立即退出，因此位于return语句之后的语句是不会被执行的、
+arguments对象伪数组 ，修改arguments中对应的值会修改对应参数 但是反之则不会   js函数不存在函数签名，函数参数保存在一个arguments对象中，因此无法重载
+
+
+复制基本类型的值时候，两个变量互相独立  复制引用类型的值时，两个变量实际上引用了同一个对象
+
+函数的参数传递是值传递 不是引用传递
+
+typeof用于检测基本类型  instanceof操作符可以检测是否是某种引用类型的实例   a instanceof Object,Array,String,function  a是否是……的实例
+
+内存回收  优化内存，将值脱离执行环境（解除引用，设置引用变量的值为null），让垃圾收集器下次运行时将其内存释放。
+-------------------------------------
+数组
+在数组长度索引之后添加一项，数组会自动创建这项到之前数组末尾的项，并赋值为undefined
+
+Array.isArray()方法 ES5新增方法 支持的浏览器IE9+ CHROME FIREFOX4+ 这个方法最终确定某个值到底是不是数组，不管他在哪个全局环境中创建（多框架下有多个不同的Array构造方法 使得instanceof无效）
+
+array.toString（）方法返回数组中每个值的字符串形式拼接成的一个以逗号分隔的字符串 对数组中每一项调用这项的toString（）方法
+array.valueOf() 方法返回数组中每个值组成的数组
+array.join(str) 方法返回数组中每个值以str为分隔符构成的字符串  
+array.push() 方法接受任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组长度
+array.pop() 方法删除数组最后一项 并且返回被删除的值
+array.shift() 方法删除数组第一项，并且返回被删除的值
+array.unshift() 方法接受任意个参数，把它们加入到数组开头，并返回修改后数组长度
+array.reverse() 方法翻转数组顺序 返回一个数组
+array.sort() 没有参数时，该方法调用数组每一项的toString（）方法 比较得到的字符串编码，排列大小，返回排列好的升序数组
+传入的参数必须是函数 array.sort(function (va,vb){return va-vb;}) 返回进行数字比较排序的数组
+array.concat() 无参数时该方法基于当前所有项创建一个新的数组并返回  如果传入一个或多个数组，该方法会将这些数组中的每一项都添加到原数组的副本中并且返回，如果参数不是数组，则简单的添加到数组末尾并换回
+array.slice() 如果有一个参数，则返回从该项到末尾的项组成的新数组 如果有两个参数则返回第一个参数的项到第二个参数前的项组成的新数组  如果参数是负数则用arr.length加上该数确定相应位置 无参数则返回空数组
+array.splice() 
+--删除 两个参数，删除第一个参数开始，第二个参数个的项
+--插入和替换 三个参数，第一个参数表示起始位置，第二个参数表示要删除的项数，第三个以后的参数表示要插入的项目
+splice()方法返回原数组中被删除的数组，若没有删除则返回空数组
+array.indexOf 两个参数 查找第一个参数在这个数组从参数二（可选）开始的索引 从数组头部开始查找
+array.lastIndexOf 两个参数 查找第一个参数在这个数组中从参数二（可选）开始的索引 从数组尾部开始查找
+
+array.reduce() 该方法接受两个参数，一个在每一项上调用的函数和作为缩小基础的初始值（可选）  传给调用函数有4个参数 前一个值，当前值，项的索引，数组对象这个函数返回的任何值都会作为第一个参数自动传给下一项。第一次迭代发生在数组的第二项 
+例子： 数组内容相加 var value=[1,2,3,4,5];
+					var sum = value.reduce(function (prev,cur,index,arr){return prev+cur ;} );
+					alert(sum); //15
+---------------------------------------
+RegExp类型
+var expression = /pattern/flags；
+其中模式部分 （pattern）可以是任何简单或者复杂的正则表达式  flags g 全局模式，模式将应用于所有字符串  i 不区分大小写模式， m 多行模式
+
+regExp.exec(str) 接受一个字符串，返回一个数组
+regExp.text(str) 接受一个字符串，匹配则返回true 否则返回false
+
+------------------------------------------
+Function类型
+函数定义 预编译，可以直接调用    函数表达式，程序执行到函数表达式之后才完成函数定义，之后的代码才可以调用该函数
+arguments中的 callee保存了arguments所在的函数 可以解决递归函数中函数名耦合问题 代码中将函数名代替为arguments.callee
+caller属性保存调用当前函数的函数的引用
+函数对象的属性
+length 表示参数的个数
+prototype 保存实例的方法
+内定义的方法call（） apply（）可以传递参数 或者扩充函数作用域
+
+
+-----------------------------------------------
+数据属性
+定义对象属性的属性
+1.[configurable]表示能否通过delete删除属性而重新定义属性，设置属性是否可以配置，如果定义为不能配置，就不能把它变回可以配置的值了
+2.[Enumberable]表示能否通过for-in循环返回属性
+3.[Writable]表示能否修改属性的值
+4.[Value]包含这个属性的数值。读取数值时从这个位置读取，写入属性时保存到这个位置
+
+修改属性默认的特性要使用 Object.defineProperty()方法 接受三个参数，属性所在的对象，属性的名字和一个描述符对象。描述对象的属性必须是以上四种对象属性一个或者多个，
+
+创建对象
+
+1 工厂模式
+2.构造函数
+构造函数应该以大写字母开头， new操作符 （1）创建一个新对象（2）将构造函数的作用域赋给新对象（3）执行构造函数的代码（4）返回新对象
+
+3原型
+构造函数用prototype指向一个原型对象，原型对象的constructor指向构造函数，原型中有可以继承的定义的属性，调用构造函数产生的实例对象，用_proto_属性指向这个对象原型，可以访问原型对象中的属性
+构造函数.prototype.isPrototypeOf(object)如果object的_proto_指向调用isPrototypeOf的对象，就返回true
+hasOwnproperty（）方法可以检测一个属性是否存在实例中，还是存在原型中
+function hasPrototypeProperty（property,object）{
+	return !object.hasOwnProperty(property) && (property in object);
+}
+这个函数可以检测一个属性是否在原型中
+
+for in枚举数据属性enumberalbe为ture的属性 ，不可枚举的属性不会显示 Object.getOwnPropertyNames()方法可以代替，枚举不可枚举的属性
+
+原型中的属性值如果是引用类型，在一个实例中修改这个属性，那么这个修改对其他实例也是可见的。  在原生对象的原型中添加方法，会造成实例中若有同名方法，导致命名冲突，而且，也可能意外的重写原生方法
+
+组合使用构造函数和原型模式，在构造函数中定义实例属性，在原型对象中定义需要被共享的属性和方法
+
+动态原型 在构造函数中用if 判断一下要定义的方法是否存在再定义原型中的方法，对原型所做的方法在实例中可以立即得到反映。
+如果在创建了实例的情况下重写原型会导致切断现有实例与新原型之间的联系
+
+寄生构造函数模型
+这个模式可以在特殊情况下为对象创建构造函数 
+function Special（）{
+	var value=new Array（）；
+
+	value.push.apply(value,arguments);
+
+	values.方法名= function() {};	//其他的想要定义的方法
+
+	return value;
+}
+
+
+-------------------------------------------
+继承
+原型链继承
+function ObjectA(){
+	//构造函数一
+}
+
+ObjectA.prototype.方法=function (){};
+
+function ObjectB(){
+	//构造函数二
+}
+
+ObjectB.prototype= new ObjectA();  //实现继承
+
+原型链继承之后，不能使用字面量为原型添加方法，会造成原型重写，导致继承无效  子类型继承后创建的实例中继承而得的引用类型的属性会被共享
+
+借用构造函数
+
+function ObjectA(){
+	//构造函数一
+}
+
+function ObjectB(){
+	//构造函数二
+	ObjectA.call(this,参数);//实现继承，将参数传递到构造函数一，
+}
+
+构造函数继承，方法无法复用，所有类型都只能使用构造函数模式
+
+组合继承
+
+function ObjectA(){
+	属性；//构造函数一
+	
+	方法；
+}
+
+ObjectA.prototype.方法=function (){};  //为构造函数一的原型添加方法
+
+function ObjectB(属性){
+	属性；//自身构造方法定义的属性
+	ObjectA.call(this ,属性);//从构造函数一种继承属性
+					//构造函数二
+}
+
+ObjectB.prototype=new ObjectA;//从构造函数一中继承方法
+
+ObjectB.prototype.方法=function (){
+	     //为ObjectB的原型对象添加方法
+}
+
+组合继承可以使得实例拥有自己的属性和共同的方法 避免了构造函数继承和原型链继承的缺点，
+
+原型式继承
+ES5中新增了Object.create()方法规范原型继承
+Object.create（用作新对象的原型，一个为新对象定义的额外属性）；
+function object(o){
+	function F(){
+		F.prototype=o;
+	}
+	return new F();
+	
+}
+
+以传入参数o为原型，创建实例，基本数据类型为实例自己所有，引用数据类型共享
+
+
+闭包
+闭包是指有权访问另一个函数作用域中变量的函数
+
+123456
+
+
