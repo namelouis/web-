@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Article</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/article.css">
+	<script type="text/javascript">
+		
+		window.onload = function(){
+			var omain=document.querySelector('.main-wrapper');
+			omain.style.display = 'block';
+		}
+	</script>
+</head>
+<body style="overflow-x: hidden;">
+	<div class="main-wrapper">
+		<header>
+		<nav>
+			<div class="logo"><a href="#">LOGO</a></div>
+			<ul>
+				
+				<li><a href="index.html">首页</a></li>
+				<li><a href="#">link2</a></li>
+				<li><a href="#">link3</a></li>
+				<li id="sidebar_trigger"><a href="#">菜单</a></li>			
+			</ul>
+		</nav>
+		<div id="banner">
+			<div class="inner">
+				<h1>HJC</h1>
+				<p class="sub-heading">这是我的博客
+				
+			 	</p>
+				<button>文章概览</button>
+				<div class="more">
+					more
+				</div>
+
+			</div>
+		</div>
+		</header>
+
+		<div class="content">
+			<div class="article">
+				<div class="entry-header">
+					<h2>H2</h2>
+				</div>
+				
+				<div class="hr"></div>
+
+				<div class="entry-article">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+				
+				<div class="navigationbar">
+					<span>Last Article</span>
+					<span>Next Article</span>
+				</div>
+				
+				<div class="comments">
+					<h2>comments</h2>
+					<ul>
+						<li>
+							<div class="articlecommentsarea">
+								<p>comments comments comments </p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<footer>
+			<ul class="share-group">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+
+			<div class="copyright">
+				&copy hjc-blog
+			</div>
+		</footer>
+	</div>
+	
+	<div class="mask">
+	</div>
+
+	<div id="sidebar">
+		<ul>
+			<li><a href="#">item1</a></li>
+			<li><a href="#">item2</a></li>
+			<li><a href="#">item3</a></li>
+			<li><a href="#">item4</a></li>
+		</ul>
+	</div>
+	
+
+	<button id="backToTop">返回顶部</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+</html>
