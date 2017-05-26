@@ -5,9 +5,6 @@ var sidebar_trigger = document.querySelector('#sidebar_trigger');
 //var bttButton = document.querySelector('#backToTop');
 var bttButton= $('#backToTop');
 
-
-
-
 function showSidebar(){
 	//sidebar.style.display= 'block';
 	event.preventDefault();
@@ -47,11 +44,7 @@ function hideBttbutton(){
 }
 
 sidebar_trigger.addEventListener('click',showSidebar,true);
-
 mask.addEventListener('click',hideSidebar,true);
-
-//bttButton.addEventListener('click',backToTop,true);
-
 bttButton.on('click',backToTop);
-
 window.addEventListener('scroll',hideBttbutton,true);
+
