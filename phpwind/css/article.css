@@ -1,0 +1,372 @@
+.clearfix:after
+{
+	content:'';
+	display: block;
+	clear:both;
+}
+
+nav{
+	background:#transparent;
+	height:50px;
+	position:fixed;
+	top:0;
+	width:100%;
+	background-color: rgba(255,255,255,0.1);
+	z-index:995;
+	
+}
+
+#banner{
+	background:transparent;
+	height:500px;
+}
+
+nav ul{
+	list-style:none;
+	margin:0;
+	float:right;
+
+}
+
+
+
+nav ul li,nav .logo {
+	display: inline-block;
+	line-height: 50px;
+	margin-right:10px;
+}
+
+nav ul li a{
+	line-height: 50px;
+	text-decoration: none;
+	display:inline-block;
+	height:inherit;
+	color:#fff;
+	text-align: center;
+	min-width:40px;
+	padding:0 20px;
+}
+
+nav ul li a:hover
+{
+	border-bottom: 3px solid #fff;
+	transition: border 0.2s;
+}
+
+
+nav div.logo{
+	float:left;
+	padding-left: 25px;	
+}
+
+nav div.logo a{
+	text-decoration: none;
+}
+
+div#banner .inner{
+	max-width:300px; 
+	text-align:center;
+	margin:0 auto;
+	position: relative;
+	top:150px;
+	color:#fff;
+}
+
+div#banner .inner h1{
+	margin:0;
+}
+
+button{
+	border:none;
+	background-color: #333;
+	color:#eee;
+	padding:10px;
+	margin-top: 10px;
+
+}
+
+div#banner button{
+	padding:18px 30px;
+	border-radius: 2px;
+}
+
+
+div#banner .inner .more{
+	margin-top:260px;
+
+}
+
+.sub-heading{
+	line-height:30px;
+	padding:20px;
+}
+
+
+.logo{
+	font-size:20px;
+	font-weight:700;
+	letter-spacing: 1px;
+}
+
+.logo a{
+	color:#fff;
+}
+
+
+
+div.hr
+{
+	height:2px;
+	width:60%;
+	margin:20px auto;
+	background: #000;
+}
+
+div.content .article
+{
+	background: #fff;
+	width:1080px;
+	margin:0 auto;
+	min-height: 600px;
+	padding-bottom: 100px;
+}
+
+div.content .entry-header
+{
+	text-align: center;
+	padding-top: 100px;
+}
+
+
+div.content .entry-header h2
+{
+	font-size: 30px;
+	font-family:Roboto Slab;
+}
+
+div.content .entry-article
+{
+	min-height: 800px;
+	padding:80px 90px;
+	font-size:20px;
+} 
+
+
+div.navigationbar
+{
+	background: #3699dc;
+	width:100%;
+	height:150px;
+	text-align: center;
+	padding-top:50px;
+}
+
+div.navigationbar span
+{
+	display:block;
+	padding-bottom: 30px;
+	font-size: 24px;
+	font-family: "Roboto Slab";
+	color:#fff;
+	margin-bottom: 30px;
+	
+}
+
+div.navigationbar span:hover
+{
+	cursor: pointer;
+}
+
+div.comments
+{
+	min-height: 300px;
+}
+
+div.comments h2
+{
+	padding-left:80px;
+}
+
+div.comments ul
+{
+	list-style: none;
+}
+
+div.comments .useravatar,.articlecommentsarea
+{
+	float:left;
+}
+
+
+div.comments .useravatar
+{
+	padding-left: 50px;
+}
+
+div.comments .articlecommentsarea
+{
+	padding-left: 80px;
+}
+
+div.respond
+{
+	margin-left: 80px;
+	margin-top:100px;
+
+}
+
+
+div.respond form textarea
+{
+	margin-left:auto;
+	margin-right:auto;
+	height:200px;
+	width:700px;
+}
+
+form .submitinput
+{
+	padding:6px 12px;
+	text-align: center;
+	color:#fff;
+	background: #3699dc;
+	border:0.8px solid #3699dc;
+	border-radius: 3px;
+}
+
+footer
+{
+	background:transparent;
+	color:#fff;
+	min-height: 400px;
+	text-align: center;
+
+}
+
+ul.share-group
+{
+	display:block;
+	width:1080px;
+	margin:0 auto;
+	padding:50px;
+}
+
+.share-group li
+{
+	display:inline-block;
+	padding:30px;
+}
+
+.copy
+{
+	padding-bottom: 20px;
+
+}
+
+.main-wrapper
+{
+	background: #444 url(../img/banner1.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	
+	background-position: center;
+	display:none;
+}
+
+div.mask
+{
+	position: fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background: rgba(0,0,0,0.4)	;
+	display:none;
+	z-index:998;
+}
+
+div#sidebar
+{
+	width:300px;
+	background:rgba(0,0,0,0.6);
+	color:#Fff;
+	position:fixed;
+	top:0;
+	right:-300px;
+	bottom:0;
+	padding: 20px 0;
+	transition: right 0.5s;
+	z-index:999;
+
+}
+
+div#sidebar ul
+{
+	list-style: none;
+	padding:0;
+}
+
+div#sidebar ul a
+{
+	padding:15px;
+	padding-left:30px;
+	display:inline-block;
+	text-decoration: none;
+	color:#fff;
+	width:100%;
+}
+
+div#sidebar ul a:hover
+{
+	background:#444;
+}
+
+button#backToTop
+{
+	position:fixed;
+	right:40px;
+	bottom:40px;
+	display:none;
+	z-index:10;
+}
+
+
+
+
+
+
+
+
+
+
+div.add-article
+{
+	background:#fff;
+	width:1080px;
+	margin:0 auto;
+	padding:80px 90px;
+
+}
+
+div.add-article h3
+{
+	text-align: center;
+}
+
+div.add-article form
+{
+	margin-top:100px;
+}
+
+div.add-article form textarea
+{
+	width:800px;
+	height:500px;
+}
+
+
+div.add-article form .addArticleTitle
+{
+	padding:10px;
+}
+
