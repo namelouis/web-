@@ -1,0 +1,451 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{
+    margin: 0;
+    padding:0;
+}
+body{
+    font-size:14px;
+}
+img{
+    border: none;
+}
+
+input,select,textarea{outline:none;    border: none;}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+/*清除浮动*/
+.clearfix:after{
+    content:"";
+    display:block;
+    clear:both;
+
+}
+.clearfix{zoom:1;}
+
+/*公用*/
+.comWidth{
+    width:1000px;
+    margin:0 auto;
+}
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+/*topBar*/
+.topBar{
+    height:31px;
+    background-color:#F7F7F7;
+}
+.leftArea{
+    float: left;
+    line-height: 31px;
+}
+.rightArea{
+    float: right;
+    line-height: 31px;
+    letter-spacing: 1px;
+}
+.rightArea a{
+    color:gray
+}
+
+.rightArea a:hover{
+    color:red;
+}
+/*centerBar*/
+.centerBar{
+    height:85px;
+    background-color: #1d7a9d;
+}
+
+.logo{
+    padding-left: 41px;
+    padding-top:19px;
+    float:left
+}
+
+.searchBox{
+    width:430px;
+    float:left;
+    padding-top: 23px;
+    padding-left:185px;
+}
+
+.searchText{
+    width:355px;
+    height:35px;
+    float: left;
+    padding-left:5px;
+}
+
+.searchButton{
+    width:70px;
+    height:35px;
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    background-color: #ff8c00;
+    color: #ffffff;
+    float: right;
+}
+
+.shopCar{
+    width: 145px;
+    height:35px;
+    background-color: #ff8c00;
+    float: right;
+    margin-top: 23px;
+    margin-right:59px;
+}
+
+.shopText{
+    display: inline-block;
+    line-height: 35px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    color: white;
+    height:100%;
+    width:87px;
+    border-right:1px solid #e27a00 ;
+    text-indent: 40px;
+}
+.shopNum{
+    display: inline-block;
+    line-height: 35px;
+    height: 35px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    color: white;
+    width:27px;
+    border-left:1px solid #e27a00 ;
+    float: right;
+    text-align: right;
+    padding-right: 29px;
+}
+
+/*navBar*/
+.navBar{
+    height:35px;
+    background-color: #1369c0;
+    color: white;
+    font-family: "Microsoft YaHei";
+
+}
+
+.shopClass{
+    width: 190px;
+    text-align: center;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+
+}
+.nav{
+    line-height: 35px;
+    float: left;
+
+}
+.nav li{
+    float: left;
+}
+.nav a {
+    height: 35px;
+    display: inline-block;
+    padding:0 35px;
+    color: #ffffff;
+}
+
+.nav .active{
+    background-color: #4593fd;
+}
+
+/*shopClassList*/
+
+
+.shopClassList{
+    background-color: #4593fd;
+    position:absolute;
+    top:35px;
+    left:0px;
+    width:100%;
+}
+
+.shopClassItem{
+    padding:7px 10px;
+}
+
+
+.shopClassItem dt{
+    height: 13px;
+    line-height: 1em;
+}
+
+.shopClassItem a{
+
+    color: #ffffff;
+    display: inline-block;
+    margin:2px 2px;
+
+}
+.shopClassItem a:hover{
+    text-decoration: underline;
+}
+
+.shopClassItemActive{
+
+    background-color: #CCCCCC;
+}
+.shopClassItemActive a{
+    color: #000000;
+
+}
+
+/*shopClassMain*/
+.shopClassMain{
+    width:568px;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    border:#CCC solid 1px;
+    position: absolute;
+    top: 35px;
+    left: 190px;
+}
+.shopClassMainContent {
+    padding:0 20px;
+}
+
+.shopListItem{
+    padding:10px 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.shopListItem dt{
+    color:#4b87d9;
+    font-weight: bold;
+    height:24px;
+    line-height: 24px;
+    text-align: left;
+
+}
+
+.shopListItem dd{
+    margin-top: -24px;
+    line-height: 24px;
+    margin-right: 12px;
+    text-align: left;
+    padding-left: 100px;
+}
+
+.shopListItem dd a{
+    display: inline-block;
+    padding: 0 10px;
+}
+.shopListLink{
+    text-align: left;
+    margin:20px 0 0 50px;
+}
+
+.shopListLink a{
+    color: #ffffff;
+    background-color: #2785e6;
+    height:26px;
+    line-height: 26px;
+    text-align: left;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 14px 0 8px;
+    margin-left: 20px;
+}
+
+/*banner*/
+.bannerBar{
+    width:810px;
+    height: 326px;
+    float:right;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+}
+
+.banner .imgBox{
+    width: 1620px;
+    height: 326px;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.imgBox li {
+    float: left;
+}
+.imgBox img{
+    width:810px;
+    height: 326px;
+    display: block;
+}
+.imgNum{
+    width: 100%;
+    position: absolute;
+    left:0;
+    bottom:12px;
+    text-align: center;
+
+}
+.imgNum a{
+    width:20px;
+    height:5px;
+    display: inline-block;
+    overflow: hidden;
+    background-color: #ffffff;
+    margin-right: 10px;
+}
+
+.imgNum .active{
+    background-color: #ff7700;
+}
+
+/*shoptitile*/
+.shopTitle{
+    height:44px;
+    font-family: "Microsoft YaHei";
+    line-height: 44px;
+    margin-bottom: 15px;
+
+}
+
+.shopTitle .titleIcon{
+
+    height: 44px;
+    width: 44px;
+    background-color: #e27a00;
+    float:left;
+}
+
+.shopTitle h3{
+    float:left;
+    font-size: 24px;
+    font-weight: bold;
+    width: 800px;
+    padding-left: 15px;
+
+}
+.shopTitle .more{
+    float: right;
+    font-family: "宋体";
+}
+.shopTitle .more:hover{
+    text-decoration: underline;
+}
+
+/*shoplist*/
+.shopList{
+    margin-bottom:20px;
+}
+
+.shopList .shopListLeft{
+    width: 190px;
+    float: left;
+}
+.shopList .shopListRight{
+    width: 808px;
+    float: right;
+    border: 1px solid #999;
+    border-bottom: #ff2701 solid 3px;
+    height:396px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.shopListLeft .bannerBar{
+    width: 190px;
+    overflow: hidden;
+    height: 400px;
+}
+
+.shopListLeft .imgBox{
+    width:380px;
+}
+
+.shopListLeft img{
+    width: 190px;
+    height: 400px;
+}
+
+.shopListRightTop{
+    margin-right: -4px;
+
+
+}
+
+.shopItemImg img{
+    height:218px;
+    width:80%;
+}
+
+.shopItem{
+    width: 202px;
+    border-right:#999 solid 1px;
+    height:279px;
+    border-bottom:1px solid #999;
+    float: left;
+
+
+}
+
+.shopItem h3{
+    font-family:"Microsoft YaHei";
+}
+
+.shopItem p{
+    color:#ff7300;
+}
+
+.shopListRightBottom .shopItemSm{
+    width: 202px;
+
+
+    text-align: center;
+    float: left;
+}
+
+.shopListRightBottom .shopItemSmImg{
+    height:115px;
+    width: 95px;
+    float:left;
+
+}
+
+.shopListRightBottom img{
+    height:115px;
+    width: 95px;
+    display: block;
+}
+.shopListRightBottom .shopItemSmCon{
+    width:100px;
+    float: right;
+    padding-top: 28px;
+}
+.shopItemSmCon h4{
+    font-family: "Microsoft YaHei";
+    line-height: 30px;
+}
+.shopItemSmCon p{
+    font-size: 12px;
+    color:#ff7300;
+}
+
+/*footer*/
+.footer{
+    margin-top:65px;
+    min-height: 200px;
+    text-align: center;
+
+}
