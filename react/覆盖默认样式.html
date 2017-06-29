@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/babel">
+        const getDefaultStyledPost = (defaultStyle)=>{
+            return (
+                class Post extends React.Component{
+                    constructor(){
+                        super()
+                        this.state={
+                            defaultStyle:{defaultStyle,this.props.style}
+                        }
+                    }
+
+
+
+                    render(){
+                        return <p style={this.state.defaultStyle} >abcde</p>
+                    }
+                }
+            )
+        }
+    </script>
+</body>
+</html>

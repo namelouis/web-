@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="content"></div>
+    <script type="text/babel">
+			class Computer extends React.Component {
+			  constructor(){
+			    super();
+			    this.state={
+			      pcStatus:'off',
+                  content:'显示器关了'
+			    }
+			  }
+			  handleBtnClick(){
+
+			     this.state.pcStatus=='off'?this.setState({
+                     pcStatus:'on',
+                     content:'显示器开了'
+                 }):this.setState({
+                     pcStatus:'off',
+                     content:'显示器关了'
+                 })
+                  //console.log(this.state.pcStatus)
+			  }
+			  
+			  render () {
+			    return (
+			      <div>
+			        <button onClick={this.handleBtnClick.bind(this)}>开关</button>
+			        <Screen showContent={this.state.content} />
+			      </div>
+			    )
+			  }
+			}
+
+			class Screen extends React.Component {
+			  	 
+			  constructor(){
+			    super();
+
+
+			  }
+			  
+			   /*componentDidMount(){
+                    console.log('did mount')
+			       this.setState({
+                      showPcStatus:this.props.pcStatus,
+                  });
+
+               }
+			  */
+			  render () {
+			    return (
+			      <div className='screen'>
+			        {this.props.showContent}
+			      </div>
+			    )
+			  }
+			}
+
+		ReactDOM.render(<Computer /> ,document.getElementById('content'));
+
+
+    </script>
+</body>
+</html>

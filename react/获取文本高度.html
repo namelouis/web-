@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/babel">
+        class Post extends React.Component {
+            constructor(){
+                super()
+            }
+
+            componentDidMount(){
+                this.state={
+                    pheight:this.p.clientHeight
+                }
+            }
+
+            handleClick(){
+
+                console.log(this.state.pheight)
+            }
+
+            render () {
+                return (<p ref={
+                    (input)=>{this.p=input
+
+                    }
+                }
+                    onClick={this.handleClick.bind(this)}
+                >{this.props.content} </p>)
+            }
+        }
+
+        ReactDOM.render(
+            <Post content="hello React"/>,document.getElementById('div1')
+        )
+    </script>
+</body>
+</html>

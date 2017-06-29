@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <style>
+        .div-black-border{
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/babel">
+        class BlackBorderContainer extends React.Component {
+            render(){
+                return <div>
+                    {this.props.children.map((element,i)=>{return <div className="div-black-border"
+                        key={i}
+                    >{element}
+                        </div>
+                    })}
+                        </div>
+
+            }
+        }
+
+        ReactDOM.render(
+                <BlackBorderContainer>
+                    <div className='name'>My Name：Lucy</div>
+                    <p className='age'>
+                        My Age：<span>12</span>
+                    </p>
+                </BlackBorderContainer>,document.getElementById('div1')
+
+
+        )
+
+    </script>
+</body>
+</html>

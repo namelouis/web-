@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+<script type="text/babel">
+    class Input extends React.Component {
+        constructor(){
+            super()
+            this.state={
+                value:''
+            }
+        }
+
+
+        handleChange(ev){
+            //console.log(ev.target.value)
+            this.setState({
+                value:ev.target.value
+            },()=>{
+                if(this.props.valueChange) {
+                    this.props.valueChange(this.state.value)
+                }
+            })
+            //console.log(this.state.value)
+
+        }
+
+
+
+        render () {
+            return (
+                    <div>
+                        <input type='text' onChange={this.handleChange.bind(this)}/>
+                    </div>
+            )
+        }
+    }
+
+    class PercentageShower extends React.Component {
+        render () {
+            return (
+                    <div>{this.props.showValue*100+'%'}</div>
+            )
+        }
+    }
+
+    class PercentageApp extends React.Component {
+        constructor(){
+            super()
+            this.state={
+                number:''
+            }
+        }
+
+        handleInputChange(value){
+            this.setState({
+                number:value
+            })
+
+        }
+
+        render () {
+            return (
+                    <div>
+                        <Input valueChange={this.handleInputChange.bind(this)}/>
+                        <PercentageShower showValue={this.state.number}/>
+                    </div>
+            )
+        }
+    }
+
+    //console.log(new Date())
+
+    ReactDOM.render(
+        <PercentageApp/>,
+        document.getElementById('div1')
+    )
+</script>
+</body>
+</html>

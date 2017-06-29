@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/babel">
+        const lessons = [
+            { title: 'Lesson 1: title', description: 'Lesson 1: description' },
+            { title: 'Lesson 2: title', description: 'Lesson 2: description' },
+            { title: 'Lesson 3: title', description: 'Lesson 3: description' },
+            { title: 'Lesson 4: title', description: 'Lesson 4: description' }
+        ]
+        class Lesson extends React.Component{
+
+
+            render(){
+                const {lesson}=this.props
+                console.log(lesson)
+                return (
+                    <div>
+                        <h1>{lesson.title}</h1>
+                        <p>{ lesson.description}</p>
+                    </div>
+                )
+            }
+        }
+
+        class LessonsList extends React.Component {
+
+
+            render() {
+                return (
+                            <div>
+                            {this.props.lessons.map(
+                                (lesson, i) => {
+                                    return <div>
+                                        <Lesson key={i} index={i} lesson={lesson}/>
+
+                                    </div>
+
+                                })}
+                            </div>
+                    )
+
+            }
+        }
+
+        /*
+        class Lesson extends React.Component {
+            render () {
+                const { lesson } = this.props
+                return (
+                        <div onClick={() => console.log('click')}>
+                            <h1>{lesson.title}</h1>
+                            <p>{lesson.description}</p>
+                        </div>
+                )
+            }
+        }
+
+        class LessonsList extends React.Component {
+            render () {
+                return (
+                        <div>{this.props.lessons.map((lesson, i) => {
+                            return <Lesson key={i} index={i} lesson={lesson} />
+                        })}</div>
+                )
+            }
+        }
+
+       */
+        ReactDOM.render(
+            <LessonsList lessons={lessons}/>,document.getElementById('div1')
+        )
+
+
+
+
+    </script>
+</body>
+</html>

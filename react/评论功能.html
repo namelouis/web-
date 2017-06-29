@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/browser.min.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <link rel="stylesheet" href="css/comment.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/babel">
+    class CommentApp extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                comment:[]
+            }
+        }
+
+        componentWillMount(){
+            this._loadComments()
+        }
+
+        _loadComments(){
+            let comments=localStorage.getItem('comments')
+            if (comments){
+                comments=JSON.parse(comments)
+                this.setState({
+                    comment:comments
+                })
+            }
+        }
+
+        _saveComment(comment){
+            localStorage.setItem('comments',JSON.stringify(comment))
+        }
+
+        handleSubmitComment(comment){
+            if(!comment){
+                return
+            }
+            if(!comment.username){
+                return alert('请输入用户名')
+            }
+            if(!comment.content){
+                return alert('请输入内容')
+            }
+
+            this.state.comment.push(comment)
+            this.setState({
+                comment:this.state.comment,
+            })
+            this._saveComment(this.state.comment)
+            //console.log(this.state)
+        }
+
+        handleDeleteComment(index){
+            //console.log('commentapp get')
+            //console.log(index)
+            const comments=this.state.comment
+            comments.splice(index,1)
+            this.setState({comment:comments})
+            this._saveComment(this.state.comment)
+        }
+
+        render(){
+            return <div className="wrapper">
+                <CommentInput
+                    onSubmit={this.handleSubmitComment.bind(this)}
+                />
+
+                <CommentList comments={this.state.comment}
+                onDeteleComment={this.handleDeleteComment.bind(this)}
+                />
+            </div>
+        }
+    }
+
+    class CommentInput extends React.Component {
+        constructor() {
+            super();
+            this.state = {
+                username: '',
+                content: ''
+            }
+        }
+
+        handleUsernameChange(ev) {
+            this.setState({
+                username: ev.target.value
+            })
+        }
+
+        handleContentChange(ev) {
+            this.setState({
+                content: ev.target.value
+            })
+        }
+
+        handleSubmit() {
+            if (this.props.onSubmit) {
+                //console.log(this.state)
+                //const {username, content} = this.state
+                this.props.onSubmit({username:this.state.username,
+                    content:this.state.content,
+                    createTime: new Date()
+                })
+            }
+            this.setState({
+                content: ''
+            })
+        }
+
+        _loadUsername(){
+            const username=localStorage.getItem('username')
+            if(username){
+                this.setState({
+                    username:username
+                })
+            }
+        }
+
+        componentWillMount(){
+            this._loadUsername()
+        }
+
+        componentDidMount() {
+            this.textarea.focus()
+        }
+
+        _saveUsername(username){
+            localStorage.setItem('username',username)
+        }
+
+        handleUsernameBlur(event){
+            this._saveUsername(event.target.value)
+        }
+
+        render() {
+            return <div className="comment-input">
+                <div className="comment-field">
+                    <span className="comment-field-name">用户名：</span>
+                    <div className="comment-field-input">
+                        <input type="text" value={this.state.username}
+                               onChange={this.handleUsernameChange.bind(this)}
+                               onBlur={this.handleUsernameBlur.bind(this)}
+                        />
+                    </div>
+                </div>
+                <div className="comment-field">
+                    <span className="comment-field-name">评论内容：</span>
+                    <div className="comment-field-input">
+                        <textarea name="" value={this.state.content}
+                                  onChange={this.handleContentChange.bind(this)}
+                                  ref={(textarea)=>{this.textarea=textarea} }
+                        ></textarea>
+                    </div>
+                </div>
+                <div className="comment-field-button">
+                    <button onClick={this.handleSubmit.bind(this)}>发布</button>
+                </div>
+
+            </div>
+        }
+    }
+
+
+    class CommentList extends React.Component{
+
+
+        handleDeleteComment(index){
+            if(this.props.onDeteleComment){
+                this.props.onDeteleComment(index)
+            }
+            //console.log('commentlist get')
+        }
+
+        render(){
+
+
+            return <div>
+
+                {
+                    this.props.comments.map((comment,i) => <Comment
+                            comment={comment}
+                            key={i}
+                            onDeleteComment={this.handleDeleteComment.bind(this)}
+                            index={i}
+                    />)
+                }
+            </div>
+        }
+    }
+
+    class Comment extends React.Component{
+        constructor(){
+            super()
+            this.state={
+                timeString:''
+            }
+        }
+
+        componentWillMount(){
+            this._updateTimeString()
+            this._timer=setInterval(this._updateTimeString.bind(this),30000)
+
+        }
+
+        componentWillUnmount(){
+            clearInterval(this._timer)
+        }
+
+        _updateTimeString(){
+            const comment=this.props.comment
+            //console.log(comment)
+            //console.log(Date.now())
+            const duration= (Date.now()-Date.parse(comment.createTime))/1000
+            //console.log(duration)
+            this.setState({
+                timeString: duration>60? `${Math.round(duration/60)} 分钟前`
+                    :`${Math.round(Math.max(duration,1))} 秒前`
+            })
+
+        }
+
+        _getProcessedContent(content){
+            return content
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .replace(/`([\S\s]+?)`/g, '<code>$1</code>')
+        }
+
+        handleDeleteComment(){
+            if(this.props.onDeleteComment){
+                this.props.onDeleteComment(this.props.index)
+            }
+            //console.log()
+        }
+
+        render(){
+            return <div className="comment">
+                <div className="comment-user">
+                    <span>{this.props.comment.username+':'}</span>
+                </div>
+                <p dangerouslySetInnerHTML={{
+                    __html:this._getProcessedContent(this.props.comment.content)
+                }}/>
+                <span className="comment-createdtime">
+
+                    {this.state.timeString}
+                </span>
+                <span className="comment-delete"
+                 onClick={this.handleDeleteComment.bind(this)}>
+                    删除
+                </span>
+            </div>
+        }
+    }
+
+
+    ReactDOM.render(
+        <CommentApp/>,document.getElementById('div1')
+    )
+</script>
+</body>
+</html>
